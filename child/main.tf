@@ -1,6 +1,4 @@
-variable "rgs" {
-  
-}
+
 
 resource "azurerm_resource_group" "example" {
     for_each = var.rgs
