@@ -1,5 +1,5 @@
 module "resource_group" {
-    source = "../child"
-    rgs =var.rgs
-  
+  source = "../child"
+  rgs    = var.rgs
+
 }
