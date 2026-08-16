@@ -75,11 +75,11 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
-        working-directory: ./Terraform/environment/dev
+        working-directory: ./Terraform/module
 
       - name: Terraform Validate
         run: terraform validate
-        working-directory: ./Terraform/environment/dev
+        working-directory: ./Terraform/module
 
       - name: Setup TFLint
         uses: terraform-linters/setup-tflint@v4
@@ -90,17 +90,17 @@ jobs:
         run: |
           tflint --init
           tflint --minimum-failure-severity=error
-        working-directory: ./Terraform/environment/dev
+        working-directory: ./Terraform/module
 
       - name: Checkov
         uses: bridgecrewio/checkov-action@v12
         with:
-          directory: ./Terraform/environment/
+          directory: ./Terraform/module
           soft_fail: true
 
       - name: Terraform Plan
         run: terraform plan -out=tfplan
-        working-directory: ./Terraform/environment/dev
+        working-directory: ./Terraform/module
 
       - name: Artifact Upload
         uses: actions/upload-artifact@v4
